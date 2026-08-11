@@ -1,223 +1,147 @@
-# Network Intrusion Detection Using Random Forest
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Network Intrusion Detection System  
+**Folder Name:** `Network-Intrusion-Detection-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Network-Intrusion-Detection.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project uses machine learning to classify network traffic as normal traffic or intrusion traffic. It applies a Random Forest Classification model trained on network traffic datasets containing normal and DDoS records.
+## 2. Purpose
 
-After training, the project evaluates test predictions, analyzes the number of normal and intrusion records, identifies important traffic features, generates visualizations, and saves the trained model for later use.
+Classify network traffic records as normal or intrusion using numerical network flow features.
 
-## Objective
+## 3. Scope
 
-<!-- The aim is to build a model that can detect suspicious traffic and support the basic idea of an Intrusion Detection System (IDS). It demonstrates how supervised machine learning can be applied in network security. -->
+The system combines normal and intrusion CSV files, trains a Random Forest classifier, and provides a dashboard for traffic prediction.
 
-## Algorithm
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-The project uses `RandomForestClassifier`, an ensemble learning method that combines many decision trees for more reliable classification.
+## 4. Intended Users
 
-Class labels:
+- Students
+- Cybersecurity analytics demo users
+- Machine learning learners
 
-```text
-0 = Normal Traffic
-1 = Intrusion Traffic
-```
+## 5. System Overview
 
-Model configuration:
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
 
-```python
-RandomForestClassifier(
-    n_estimators=100,
-    random_state=42,
-    n_jobs=-1
-)
-```
+## 6. Functional Requirements
 
-## Dataset
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
 
-Normal traffic dataset:
+## 7. Non-Functional Requirements
 
-```text
-Monday-WorkingHours.pcap_ISCX.csv
-```
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
 
-This file is assigned:
+## 8. Data Requirements
 
-```text
-Label = 0
-```
+**Required Data Source:** Monday-WorkingHours.pcap_ISCX.csv and Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv, uploaded CSVs, or dashboard demo data.
 
-Intrusion traffic dataset:
+**Input Features:**
 
-```text
-Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
-```
+- Numerical network flow features from uploaded traffic CSV files
 
-This file is assigned:
+**Target or Output Variable:** `Label`
 
-```text
-Label = 1
-```
+## 9. Model and Processing Requirements
 
-## Workflow
+**Model or Processing Method:** Random Forest Classifier
 
-```text
-Load datasets
-Clean column names
-Assign labels
-Combine datasets
-Replace infinite values
-Remove missing values
-Remove duplicate records
-Select numerical features
-Split data into train and test sets
-Train Random Forest model
-Generate predictions
-Evaluate model
-Analyze predicted classes
-Calculate feature importance
-Create charts
-Save trained model
-```
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
 
-## Program Details
+## 10. Output Requirements
 
-The program loads separate CSV files for normal and intrusion traffic. Column names are cleaned, labels are assigned, and both datasets are merged. The combined dataset is cleaned by replacing infinite values, dropping missing rows, and removing duplicates. Only numerical features are selected before training.
+The system shall display:
 
-The cleaned data is split in an 80:20 ratio. A Random Forest model with 100 trees is trained and tested. The model is evaluated with accuracy, confusion matrix, and classification report. Prediction counts and the top 10 important network features are visualized. Finally, the trained model is saved as a `.pkl` file.
+- Normal traffic or intrusion prediction
+- Accuracy
+- Confusion matrix
+- Classification report
+- Feature importance chart
 
-## Evaluation
+## 11. External Interface Requirements
 
-- Accuracy Score
-- Confusion Matrix
-- Classification Report
-- Precision
-- Recall
-- F1-score
-- Support
+### 11.1 User Interface
 
-## Prediction Analysis
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
 
-Example output format:
+### 11.2 Software Interface
 
-```text
-Final Prediction Analysis
--------------------------
-Normal Traffic       : XXXXX
-Intrusions Detected  : XXXXX
-Total Records        : XXXXX
-```
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
 
-A bar chart is generated to show the final prediction count.
+## 12. Installation and Run Instructions
 
-## Feature Importance
+Open PowerShell in this folder:
 
-Random Forest provides feature-importance values. The project displays the top 10 network features that had the highest effect on intrusion detection.
-
-## Saved Model
-
-The trained model is saved with Joblib:
-
-```text
-random_forest_model.pkl
-```
-
-It can be loaded later without retraining:
-
-```python
-import joblib
-
-model = joblib.load("random_forest_model.pkl")
-```
-
-## Technologies
-
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Joblib
-- Random Forest
-- Machine Learning
-- Network Security
-
-## Project Files
-
-```text
-Network-Intrusion-Detection/
-|-- Network-Intrusion-Detection.py
-|-- requirements.txt
-|-- .gitignore
-`-- README.md
-```
-
-## Requirements
-
-```text
-pandas
-numpy
-matplotlib
-scikit-learn
-joblib
+```powershell
+cd "E:\visual labs project websites\Network-Intrusion-Detection-main"
 ```
 
 Install dependencies:
 
-```bash
-pip install -r requirements.txt
+```powershell
+python -m pip install -r Requirements.txt
 ```
 
-## How to Run
+Run the dashboard:
 
-```bash
-git clone <your-repository-link>
-cd Network-Intrusion-Detection
-pip install -r requirements.txt
+```powershell
+python -m streamlit run streamlit_app.py
 ```
 
-Make sure these dataset files are in the project directory:
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Monday-WorkingHours.pcap_ISCX.csv
-Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+http://localhost:8501
 ```
 
-Run the program:
+## 13. Assumptions and Constraints
 
-```bash
-python model-training.py
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Main Features
+## 14. Acceptance Criteria
 
-- Loads normal and intrusion traffic data.
-- Cleans and preprocesses network records.
-- Labels normal and DDoS traffic.
-- Removes missing, infinite, and duplicate values.
-- Selects numerical features.
-- Trains a Random Forest classifier.
-- Displays evaluation metrics.
-- Performs prediction analysis.
-- Shows feature-importance visualization.
-- Saves the trained model.
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-## Learning Outcomes
+## 15. Future Enhancements
 
-This project covers supervised learning, Random Forest classification, network intrusion detection, preprocessing, train-test split, model evaluation, confusion matrix, precision, recall, F1-score, feature importance, data visualization, model serialization, and basic network security concepts.
-
-## Future Scope
-
-- Use additional intrusion datasets.
-- Detect multiple attack types instead of binary classes.
-- Compare Random Forest with XGBoost and Decision Tree.
-- Apply feature-selection methods.
-- Tune model hyperparameters.
-- Build a real-time intrusion detection system.
-- Add a web interface.
-- Deploy the trained model as an API.
-
-## License
-
-This project is created for educational and internship purposes.
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

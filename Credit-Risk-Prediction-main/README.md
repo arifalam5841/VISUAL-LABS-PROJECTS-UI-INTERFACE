@@ -1,79 +1,148 @@
-# Credit Risk Prediction Using Logistic Regression
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Credit Risk Prediction System  
+**Folder Name:** `Credit-Risk-Prediction-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Credit-risk-prediction.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project predicts whether a loan applicant belongs to the low-risk or high-risk credit category. It uses Logistic Regression from Scikit-learn and trains on a sample dataset containing applicant income, credit score, and loan amount.
+## 2. Purpose
 
-After training, the program asks the user for applicant details and predicts the credit-risk level.
+Predict whether a loan applicant has low or high credit risk.
 
-## Features
+## 3. Scope
 
-- Creates a sample applicant dataset.
-- Processes the dataset with Pandas.
-- Splits records into training and testing sets.
-- Trains a Logistic Regression model.
-- Measures prediction accuracy.
-- Takes income, credit score, and loan amount from the user.
-- Classifies the applicant as low credit risk or high credit risk.
+The system evaluates applicant income, credit score, and loan amount to classify risk level.
 
-## Program Flow
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-The program prepares a dataset of loan applicants with credit-risk labels. It separates input features from the target, splits the data, trains a Logistic Regression model, evaluates accuracy, and then uses the trained model to predict credit risk for new user-provided values.
+## 4. Intended Users
 
-## Technologies
+- Students
+- Banking analytics demo users
+- Machine learning learners
 
-- Python
-- Pandas
-- Scikit-learn
-- Logistic Regression
-- VS Code
+## 5. System Overview
 
-## Project Files
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** Built-in demo dataset or uploaded CSV with required risk columns.
+
+**Input Features:**
+
+- Income
+- CreditScore
+- LoanAmount
+
+**Target or Output Variable:** `Risk`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** Logistic Regression
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Low risk or high risk prediction
+- Accuracy
+- Confusion matrix
+- Classification report
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Credit-Risk-Prediction-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-<!-- Credit-Risk-Prediction/ -->
-|-- credit-risk-prediction.py
-|-- README.md
-|-- requirements.txt
-`-- .gitignore
+http://localhost:8501
 ```
 
-## Installation and Execution
+## 13. Assumptions and Constraints
 
-```bash
-git clone <repository-link>
-cd Credit-Risk-Prediction
-pip install -r requirements.txt
-python credit-risk-prediction.py
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Sample Input
+## 14. Acceptance Criteria
 
-```text
-Income: 55000
-Credit Score: 720
-Loan Amount: 120000
-```
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-## Sample Output
+## 15. Future Enhancements
 
-```text
-Prediction Result:
-Low Credit Risk (Loan is likely to be approved)
-```
-
-## Concepts Used
-
-- Supervised learning
-- Logistic Regression
-- Binary classification
-- Train-test split
-- Model evaluation
-- User input handling
-
-## Acknowledgement
-
-Special thanks to mentor Aiman Kazi for guidance and encouragement during the machine learning learning journey.
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

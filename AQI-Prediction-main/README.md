@@ -1,177 +1,157 @@
-# Air Quality Index Prediction Using XGBoost
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Air Quality Index Prediction System  
+**Folder Name:** `AQI-Prediction-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `AQI-Prediction.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project estimates the Air Quality Index (AQI) from pollutant concentration values using an XGBoost regression model. The dataset includes pollution-related measurements such as PM2.5, PM10, NO, NO2, NOx, NH3, CO, SO2, O3, Benzene, and Toluene.
+## 2. Purpose
 
-The workflow covers data inspection, exploratory visualization, model training, regression evaluation, feature-importance analysis, model saving, and AQI prediction from user-entered pollutant values.
+Predict Air Quality Index values from pollutant measurements and show model evaluation through a Streamlit dashboard.
 
-## Aim
+## 3. Scope
 
-- Predict AQI from air-pollution parameters.
-- Study how different pollutants relate to AQI.
-- Apply XGBoost to a regression-based machine learning problem.
-- Measure model performance using standard regression metrics.
-- Accept new pollutant values from the user and generate an AQI estimate.
-- Convert the predicted AQI into the correct AQI category.
+The system trains a regression model using pollutant features, evaluates prediction quality, and allows users to enter pollutant values for AQI prediction.
 
-## Dataset
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-The project uses `air_quality_data.csv`, which contains 29,531 records and 18 columns.
+## 4. Intended Users
 
-Main columns:
+- Students
+- Data science learners
+- Environmental analysis demo users
 
-- `City`
-- `Date`
-- `PM2.5`
-- `PM10`
-- `NO`
-- `NO2`
-- `NOx`
-- `NH3`
-- `CO`
-- `SO2`
-- `O3`
-- `Benzene`
-- `Toluene`
-- `AQI`
-- `AQI_Bucket`
-- `Year`
-- `Month`
-- `Season`
+## 5. System Overview
 
-Target variable:
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** air_quality_data.csv, or uploaded CSV with the required pollutant columns and AQI target.
+
+**Input Features:**
+
+- PM2.5
+- PM10
+- NO
+- NO2
+- NOx
+- NH3
+- CO
+- SO2
+- O3
+- Benzene
+- Toluene
+
+**Target or Output Variable:** `AQI`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** XGBoost Regressor with Random Forest fallback in the dashboard
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Predicted AQI value
+- AQI category
+- MAE, RMSE, and R2 metrics
+- Actual vs predicted chart
+- Dataset preview
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\AQI-Prediction-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-AQI
+http://localhost:8501
 ```
 
-Features used for training:
+## 13. Assumptions and Constraints
 
-```text
-PM2.5, PM10, NO, NO2, NOx, NH3, CO, SO2, O3, Benzene, Toluene
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-`AQI_Bucket` is not included as an input feature because it is derived from AQI. Using it would create target leakage.
+## 14. Acceptance Criteria
 
-## Method
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-The program loads the dataset with Pandas, checks structure, missing values, duplicates, and summary statistics, then creates visualizations such as AQI distribution and a correlation heatmap. Selected pollutant columns are separated from the target column, and the data is split into training and testing sets.
+## 15. Future Enhancements
 
-An `XGBRegressor` model is trained on the training data and evaluated with MAE, MSE, RMSE, and R2 score. The project also displays feature importance and an actual-versus-predicted AQI graph. After training, the model is saved with Joblib and used for prediction from user input.
-
-## Algorithm
-
-The project uses XGBoost, a gradient-boosting algorithm based on decision trees. It is useful here because AQI depends on non-linear relationships between several pollutants.
-
-```python
-XGBRegressor(
-    n_estimators=300,
-    learning_rate=0.05,
-    max_depth=6,
-    subsample=0.8,
-    colsample_bytree=0.8,
-    random_state=42,
-    objective="reg:squarederror"
-)
-```
-
-## Evaluation
-
-- MAE: average absolute difference between actual and predicted AQI.
-- MSE: average squared prediction error.
-- RMSE: square root of MSE, shown in AQI units.
-<!-- - R2 Score: explains how much AQI variation is captured by the model. -->
-
-## Visual Output
-
-- AQI distribution graph
-- Correlation heatmap
-- Feature-importance chart
-- Actual vs predicted AQI plot
-
-## Prediction Example
-
-Example input:
-
-```text
-PM2.5: 45
-PM10: 80
-NO: 10
-NO2: 30
-NOx: 40
-NH3: 20
-CO: 0.8
-SO2: 15
-O3: 40
-Benzene: 1.5
-Toluene: 5
-```
-
-Example output:
-
-```text
-Predicted AQI : 92.37
-AQI Category  : Satisfactory
-```
-
-Actual values may vary based on the trained model.
-
-## AQI Categories
-
-| AQI Range | Category |
-| --------: | -------- |
-| 0-50 | Good |
-| 51-100 | Satisfactory |
-| 101-200 | Moderate |
-| 201-300 | Poor |
-| 301-400 | Very Poor |
-| 401+ | Severe |
-
-## Technologies
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- XGBoost
-- Joblib
-
-## Project Files
-
-```text
-AQI-Prediction/
-|-- air_quality_data.csv
-|-- AQI-Prediction.py
-|-- requirements.txt
-|-- README.md
-`-- .gitignore
-```
-
-## Setup and Run
-
-```bash
-git clone <your-repository-link>
-cd AQI-Prediction
-pip install -r requirements.txt
-python AQI-Prediction.py
-```
-
-## Possible Enhancements
-
-- Add weather features such as temperature and humidity.
-- Encode `City` and use it as a feature.
-- Include historical AQI values for time-series prediction.
-- Tune XGBoost hyperparameters.
-- Add cross-validation.
-- Build a GUI or web application.
-- Connect real-time air-quality API data.
-
-## Learning Outcomes
-
-This project demonstrates data preprocessing, EDA, regression modeling, XGBoost training, model evaluation, feature importance, visualization, Joblib model saving, user-input prediction, and AQI category classification.
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

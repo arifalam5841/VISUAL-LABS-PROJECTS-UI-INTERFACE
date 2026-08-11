@@ -1,61 +1,149 @@
-# Credit Card Fraud Detection Using Logistic Regression
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Credit Card Fraud Detection System  
+**Folder Name:** `Credit-card-fraud-detection-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Credit-card-fraud-detection.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project classifies credit card transactions as either fraudulent or legitimate using Logistic Regression from Scikit-learn. A sample transaction dataset is used for training, and the user can enter transaction details in the console to get a prediction.
+## 2. Purpose
 
-## Key Features
+Classify card transactions as legitimate or fraudulent from transaction behavior.
 
-- Builds a sample dataset of transaction records.
-- Splits data into training and testing sets with `train_test_split`.
-- Trains a Logistic Regression classification model.
-- Checks performance using accuracy score.
-- Accepts transaction amount, time, location-change status, and international-transaction status.
-- Predicts whether the transaction is fraudulent or legitimate.
-- Shows the result in a clear console format.
+## 3. Scope
 
-## Technologies
+The system trains a binary classifier on transaction attributes and exposes a dashboard for transaction risk checks.
 
-- Python
-- Pandas
-- Scikit-learn
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-## Project Files
+## 4. Intended Users
+
+- Students
+- Fraud detection demo users
+- Machine learning learners
+
+## 5. System Overview
+
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** Built-in demo dataset or uploaded CSV with transaction columns.
+
+**Input Features:**
+
+- Transaction_Amount
+- Transaction_Time
+- Location_Change
+- International
+
+**Target or Output Variable:** `Fraud`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** Logistic Regression
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Fraud or legitimate prediction
+- Accuracy
+- Confusion matrix
+- Classification report
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Credit-card-fraud-detection-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Credit-Card-Fraud-Detection/
-|-- credit_card_fraud_detection.py
-|-- README.md
-|-- requirements.txt
-`-- .gitignore
+http://localhost:8501
 ```
 
-## How to Run
+## 13. Assumptions and Constraints
 
-```bash
-git clone https://github.com/your-username/Credit-Card-Fraud-Detection.git
-cd Credit-Card-Fraud-Detection
-pip install -r requirements.txt
-python credit_card_fraud_detection.py
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Example
+## 14. Acceptance Criteria
 
-```text
-====== Credit Card Fraud Detection ======
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-Enter Transaction Amount (Rs): 9000
-Enter Transaction Time (0-23 hours): 2
-Location Changed? (0 = No, 1 = Yes): 1
-International Transaction? (0 = No, 1 = Yes): 1
+## 15. Future Enhancements
 
-<!-- ========== Result ========== -->
-Fraudulent Transaction Detected!
-```
-
-## Learning Outcomes
-
-This project gives practice with binary classification, Logistic Regression, Pandas-based preprocessing, train-test splitting, Scikit-learn model training, accuracy evaluation, console input handling, and real-time prediction.
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

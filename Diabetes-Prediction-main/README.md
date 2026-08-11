@@ -1,83 +1,153 @@
-# Diabetes Prediction Using Logistic Regression
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Diabetes Prediction System  
+**Folder Name:** `Diabetes-Prediction-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `diabetes-prediction.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project predicts whether a patient is diabetic or non-diabetic using Logistic Regression from Scikit-learn. The model is trained on a diabetes dataset containing medical attributes and then accepts user-entered medical values for prediction.
+## 2. Purpose
 
-## Features
+Predict whether a patient is diabetic based on diagnostic measurements.
 
-- Loads and preprocesses the diabetes dataset.
-- Splits the dataset into training and testing sets.
-- Trains a Logistic Regression classifier.
-- Evaluates the model with accuracy score.
-- Displays classification report and confusion matrix.
-- Takes medical parameters from the user.
-- Predicts diabetic or non-diabetic status.
+## 3. Scope
 
-## Program Flow
+The system trains a classifier on medical-style input fields and provides a patient prediction dashboard.
 
-The program reads the dataset with Pandas, separates input columns from the target column, splits the data using `train_test_split`, trains a Logistic Regression model, evaluates it using classification metrics, and finally predicts diabetes status from user-provided medical information.
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-## Dataset
+## 4. Intended Users
 
-The project uses the Pima Indians Diabetes Dataset.
+- Students
+- Healthcare analytics demo users
+- Machine learning learners
 
-Input features:
+## 5. System Overview
+
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** diabetes.csv, uploaded CSV, or dashboard demo data.
+
+**Input Features:**
 
 - Pregnancies
 - Glucose
-- Blood Pressure
-- Skin Thickness
+- BloodPressure
+- SkinThickness
 - Insulin
 - BMI
-- Diabetes Pedigree Function
+- DiabetesPedigreeFunction
 - Age
 
-Target values:
+**Target or Output Variable:** `Outcome`
 
-- `0` = Non-Diabetic
-- `1` = Diabetic
+## 9. Model and Processing Requirements
 
-## Evaluation
+**Model or Processing Method:** Logistic Regression
 
-- Accuracy Score
-- Classification Report
-- Confusion Matrix
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
 
-## Technologies
+## 10. Output Requirements
 
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Logistic Regression
+The system shall display:
 
-## How to Run
+- Diabetic or not diabetic prediction
+- Accuracy
+- Confusion matrix
+- Classification report
 
-1. Clone the repository.
-2. Install the required libraries.
-3. Place `diabetes.csv` in the project folder.
-4. Run the Python script:
+## 11. External Interface Requirements
 
-```bash
-python diabetes_prediction.py
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Diabetes-Prediction-main"
 ```
 
-5. Enter the requested medical details.
-6. View the predicted result.
+Install dependencies:
 
-## Learning Outcomes
+```powershell
+python -m pip install -r Requirements.txt
+```
 
-- Data preprocessing with Pandas.
-- Binary classification with Logistic Regression.
-- Train-test splitting.
-- Classification model evaluation.
-- Prediction using a trained model.
-- Building a complete beginner-level machine learning workflow.
+Run the dashboard:
 
-## License
+```powershell
+python -m streamlit run streamlit_app.py
+```
 
-This project is created for educational use.
+Then open the local URL shown by Streamlit, usually:
+
+```text
+http://localhost:8501
+```
+
+## 13. Assumptions and Constraints
+
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
+
+## 14. Acceptance Criteria
+
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
+
+## 15. Future Enhancements
+
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

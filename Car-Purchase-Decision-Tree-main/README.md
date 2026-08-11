@@ -1,104 +1,152 @@
-# Car Purchase Prediction Using Decision Tree
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Car Purchase Decision Tree System  
+**Folder Name:** `Car-Purchase-Decision-Tree-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Car-Purchase-Decision-Tree.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This machine learning project predicts whether a customer is likely to buy a car by using a Decision Tree classification model. The prediction is based on customer information such as age, gender, annual income, marital status, driving license status, and house ownership.
+## 2. Purpose
 
-## Project Purpose
+Predict whether a customer is likely to buy a car using profile and financial attributes.
 
-The project shows how a Decision Tree Classifier can be built with Scikit-learn. It includes preprocessing, label encoding, train-test splitting, model training, evaluation, visualization, and prediction from user input.
+## 3. Scope
 
-## Main Features
+The system trains a decision tree classifier, evaluates classification performance, and provides a web form for customer prediction.
 
-- Converts categorical values into numeric form using Label Encoding.
-- Trains a Decision Tree Classifier.
-- Splits the dataset into training and testing data.
-- Evaluates the model with accuracy, confusion matrix, and classification report.
-- Accepts customer details through the console.
-- Predicts whether the customer may purchase a car.
-- Displays a visualization of the decision tree.
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-## Dataset Columns
+## 4. Intended Users
 
-| Feature | Meaning |
-| ------- | ------- |
-| Age | Age of the customer |
-| Gender | Male or Female |
-| Annual_Income | Customer's yearly income |
-| Marital_Status | Married or Single |
-| Has_Driving_License | Driving license availability |
-| Owns_House | House ownership status |
-| Buy_Car | Target value: Yes or No |
+- Students
+- Machine learning learners
+- Sales analytics demo users
 
-## Workflow
+## 5. System Overview
 
-1. Load the customer dataset.
-2. Encode categorical columns.
-3. Select input features and target column.
-4. Split the data into training and testing sets.
-5. Train the Decision Tree model.
-6. Evaluate model performance.
-7. Take customer details as input.
-8. Predict the car purchase decision.
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
 
-## Technologies
+## 6. Functional Requirements
 
-- Python 3.x
-- Pandas
-- Scikit-learn
-- Matplotlib
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
 
-## Project Files
+## 7. Non-Functional Requirements
 
-```text
-Car-Purchase-Prediction/
-|-- car_data.csv
-|-- Car-Purchase-Decision-Tree.py
-|-- streamlit_app.py
-|-- README.md
-|-- requirements.txt
-`-- .gitignore
-```
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
 
-## Run Instructions
+## 8. Data Requirements
 
-### Console Version
+**Required Data Source:** car_data.csv, uploaded CSV, or dashboard demo data.
 
-```bash
-git clone https://github.com/your-username/Car-Purchase-Prediction.git
-cd Car-Purchase-Prediction
-pip install -r requirements.txt
-python Car-Purchase-Decision-Tree.py
-```
+**Input Features:**
 
-### Streamlit Dashboard
+- Age
+- Gender
+- Annual_Income
+- Marital_Status
+- Has_Driving_License
+- Owns_House
 
-```bash
-pip install -r Requirements.txt
-streamlit run streamlit_app.py
-```
+**Target or Output Variable:** `Buy_Car`
 
-The dashboard looks for `car_data.csv` in the project folder. If the file is not present, it uses a small demo dataset so the dashboard still opens. You can also upload a CSV from the sidebar.
+## 9. Model and Processing Requirements
 
-## Concepts Practiced
+**Model or Processing Method:** Decision Tree Classifier
 
-- Decision Tree Classification
-- Gini Index
-- Label Encoding
-- Data preprocessing
-- Feature selection
-- Model training and testing
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Buy car prediction
+- Accuracy
 - Confusion matrix
 - Classification report
 - Decision tree visualization
 
-## Future Scope
+## 11. External Interface Requirements
 
-- Use a larger real-world dataset.
-- Tune Decision Tree hyperparameters.
-- Compare results with Random Forest and Logistic Regression.
-- Add a GUI.
-- Deploy the project with Flask or Streamlit.
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Car-Purchase-Decision-Tree-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
+
+```text
+http://localhost:8501
+```
+
+## 13. Assumptions and Constraints
+
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
+
+## 14. Acceptance Criteria
+
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
+
+## 15. Future Enhancements
+
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

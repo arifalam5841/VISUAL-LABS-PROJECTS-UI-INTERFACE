@@ -1,59 +1,145 @@
-# House Price Prediction Using Linear Regression
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Student Marks Prediction System  
+**Folder Name:** `Student-Marks-Prediction-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `student-marks-prediction.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project predicts house price from house area using Linear Regression from Scikit-learn. A sample dataset is used to train the model, and the program predicts the price for an area entered by the user.
+## 2. Purpose
 
-## Features
+Predict student marks from study hours using linear regression.
 
-- Creates a dataset of house areas and prices.
-- Trains a Linear Regression model.
-- Accepts house area as user input.
-- Predicts the estimated house price.
-- Prints the result in an easy-to-read format.
+## 3. Scope
 
-## Technologies
+The system trains a simple regression model and provides a dashboard input for marks prediction.
 
-- Python
-- Pandas
-- Scikit-learn
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-## Algorithm
+## 4. Intended Users
 
-Linear Regression is a supervised machine learning algorithm used for continuous value prediction. In this project, it learns the relationship between house area and price.
+- Students
+- Regression demo users
+- Education analytics learners
 
-## Dataset
+## 5. System Overview
 
-| Area (sq.ft.) | Price |
-| ------------: | ----: |
-| 600 | 20 |
-| 800 | 28 |
-| 1000 | 35 |
-| 1200 | 42 |
-| 1400 | 50 |
-| 1600 | 58 |
-| 1800 | 65 |
-| 2000 | 72 |
-| 2200 | 80 |
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
 
-## How to Run
+## 6. Functional Requirements
 
-```bash
-pip install -r requirements.txt
-python house-price-prediction.py
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** Built-in demo dataset or uploaded CSV with Hours and Marks columns.
+
+**Input Features:**
+
+- Hours
+
+**Target or Output Variable:** `Marks`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** Linear Regression
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Predicted marks
+- MAE, RMSE, and R2 metrics
+- Actual vs predicted chart
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Student-Marks-Prediction-main"
 ```
 
-## Sample Output
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Enter House Area: 1500
-
-Predicted House Price: 54.0 Lakhs
+http://localhost:8501
 ```
 
-## Conclusion
+## 13. Assumptions and Constraints
 
-This project gives a beginner-friendly example of supervised machine learning by training a Linear Regression model to estimate house price from area.
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
+
+## 14. Acceptance Criteria
+
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
+
+## 15. Future Enhancements
+
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

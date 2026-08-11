@@ -1,283 +1,153 @@
-# Swarm AI Research Assistant
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Swarm AI Research Assistant System  
+**Folder Name:** `SWARM-AI-Research-Assistant-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `app.py`  
+**Dashboard Script:** `app.py`
 
-Swarm AI Research Assistant is a multi-agent AI application that automates the research process. It can break a topic into tasks, collect web and academic information, check important claims, summarize findings, and create a downloadable PDF research report.
+## 2. Purpose
 
-The project is built with Python, LangGraph, LangChain, Ollama, Llama 3.2, and Streamlit.
+Coordinate multiple AI agents to research a topic, summarize findings, check claims, and generate a report.
 
-## Project Idea
+## 3. Scope
 
-Manual research usually involves searching different sources, comparing information, verifying facts, and preparing a structured report. This project divides those responsibilities across specialized AI agents instead of using one model for the complete task.
+The system uses a Streamlit UI, LangGraph workflow, Ollama language model integration, web research, academic search, summarization, fact checking, and report generation.
 
-## Research Workflow
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-```text
-User
- |
- v
-Coordinator
- |
- +--> Web Researcher
- |
- +--> Academic Researcher
- |
- v
-Fact Checker
- |
- v
-Summarizer
- |
- v
-Report Generator
- |
- v
-PDF Report
-```
+## 4. Intended Users
 
-## Features
+- Students
+- Researchers
+- Technical demo users
 
-- Multi-agent AI research workflow.
-- Research task planning and coordination.
-- Web research.
-- Academic paper research.
-- Fact checking and claim verification.
-- Automated summary generation.
-- PDF report creation.
-- Streamlit interface.
-- Research statistics.
-- Source references.
-- Downloadable reports.
-- Local LLM support through Ollama.
-- Sensitive files protected through `.gitignore`.
+## 5. System Overview
 
-## AI Agents
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
 
-### Coordinator Agent
+## 6. Functional Requirements
 
-The Coordinator receives the user's topic, understands the research requirement, divides the topic into subtasks, organizes the workflow, and coordinates the remaining agents.
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
 
-### Web Researcher Agent
+## 7. Non-Functional Requirements
 
-The Web Researcher searches online sources and collects titles, URLs, snippets, and supporting information related to the topic.
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
 
-### Academic Researcher Agent
+## 8. Data Requirements
 
-The Academic Researcher focuses on research papers and academic sources. It collects paper title, authors, publication details, summary, and paper URL.
+**Required Data Source:** User-entered research topic and external search results.
 
-### Fact Checker Agent
+**Input Features:**
 
-The Fact Checker reviews collected information, checks important claims, compares evidence, identifies weak or unreliable statements, and produces verified findings.
+- Research query
+- Agent workflow state
+- Web sources
+- Academic sources
+- Verified claims
+- Summary
+- Final report
 
-### Summarizer Agent
+**Target or Output Variable:** `Research report`
 
-The Summarizer converts verified information into a structured research summary. Sections can include introduction, key findings, applications, benefits, limitations, future scope, and conclusion.
+## 9. Model and Processing Requirements
 
-### Report Generator Agent
+**Model or Processing Method:** LangGraph multi-agent workflow with Ollama-backed language model calls
 
-The Report Generator creates the final PDF report containing topic, summary, key findings, references, web sources, and academic sources. Reports are stored in the `reports/` folder.
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
 
-## Technologies
+## 10. Output Requirements
 
-| Technology | Purpose |
-| ---------- | ------- |
-| Python | Core language |
-| LangGraph | Agent workflow orchestration |
-| LangChain | LLM application framework |
-| Ollama | Local model execution |
-| Llama 3.2 | Local language model |
-| Streamlit | Web interface |
-| DuckDuckGo Search | Web research |
-| arXiv | Academic research |
-| ReportLab | PDF generation |
-| python-dotenv | Environment variable handling |
-| Git and GitHub | Version control |
+The system shall display:
 
-## Project Files
+- Research subtasks
+- Source lists
+- Verified claims
+- Research summary
+- Downloadable report
 
-```text
-SWARM-AI-Research-Assistant/
-|-- agents/
-|   |-- academic_researcher.py
-|   |-- coordinator.py
-|   |-- fact_checker.py
-|   |-- report_generator.py
-|   |-- summarizer.py
-|   `-- web_researcher.py
-|-- tools/
-|-- workflow/
-|   |-- graph.py
-|   `-- state.py
-|-- reports/
-|-- app.py
-|-- config.py
-|-- requirements.txt
-|-- test_research.py
-|-- .gitignore
-`-- README.md
-```
+## 11. External Interface Requirements
 
-## How the Program Works
+### 11.1 User Interface
 
-The user enters a research topic in the Streamlit app. The Coordinator plans the research tasks. The Web Researcher gathers online information, and the Academic Researcher searches academic papers. The collected data goes to the Fact Checker for verification. The Summarizer creates a structured explanation from verified results, and the Report Generator prepares a PDF report with findings and references.
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
 
-## Installation
+### 11.2 Software Interface
 
-Clone the repository:
+- Python packages shall be installed from `requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
 
-```bash
-git clone https://github.com/YOUR_USERNAME/swarm-ai-research-assistant.git
-cd swarm-ai-research-assistant
-```
+## 12. Installation and Run Instructions
 
-Create and activate a virtual environment on Windows:
+Open PowerShell in this folder:
 
 ```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-```
-
-If PowerShell blocks activation, run:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
-.\venv\Scripts\Activate.ps1
+cd "E:\visual labs project websites\SWARM-AI-Research-Assistant-main"
 ```
 
 Install dependencies:
 
 ```powershell
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-## Ollama Setup
-
-This project uses Ollama for running the language model locally. Install Ollama, then pull the model:
-
-```bash
-ollama pull llama3.2
-```
-
-Check that the model is available:
-
-```bash
-ollama list
-```
-
-## Environment Variables
-
-Create a `.env` file in the project root if the configuration requires API keys.
-
-Example:
-
-```env
-OPENAI_API_KEY=your_api_key_here
-```
-
-Do not upload `.env`, API keys, passwords, or tokens to GitHub. The `.gitignore` file is configured to help prevent sensitive files from being committed. If the project runs fully with local Ollama, an OpenAI API key may not be required.
-
-## Running the Project
-
-Streamlit web app:
+Run the dashboard:
 
 ```powershell
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
-Streamlit usually opens at:
+Then open the local URL shown by Streamlit, usually:
 
 ```text
 http://localhost:8501
 ```
 
-Terminal workflow:
+## 13. Assumptions and Constraints
 
-```powershell
-python test_research.py
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Example Topics
+## 14. Acceptance Criteria
 
-```text
-Artificial Intelligence in Healthcare
-Artificial Intelligence in Cybersecurity
-Impact of Machine Learning on Education
-Applications of Generative AI
-Renewable Energy Technologies
-```
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-## Application Output
+## 15. Future Enhancements
 
-The app provides:
-
-- Number of research tasks.
-- Number of web sources.
-- Number of academic papers.
-- Structured research summary.
-- Fact-check results.
-- Web source links.
-- Academic paper details.
-- Downloadable PDF report.
-
-## Generated Reports
-
-Reports are saved in:
-
-```text
-reports/
-```
-
-Example:
-
-```text
-reports/
-`-- Artificial_Intelligence_in_Healthcare_20260804_163210.pdf
-```
-
-The report contains the research topic, summary, key findings, conclusion, references, web sources, and academic sources.
-
-## Multi-Agent Architecture
-
-The system separates the research process into agent roles. This makes the workflow easier to organize, improves source comparison, supports fact verification, and allows new specialized agents to be added later.
-
-## Security Notes
-
-The project uses `.gitignore` to exclude sensitive or unnecessary files such as:
-
-```text
-.env
-venv/
-__pycache__/
-*.pdf
-.vscode/
-.idea/
-```
-
-## Future Scope
-
-- Show real-time agent execution status.
-- Add more specialized research agents.
-- Support more academic databases.
-- Add more web search providers.
-- Improve PDF formatting.
-- Add research visualizations.
-- Save research history.
-- Export multiple report formats.
-- Improve source ranking.
-- Score source reliability automatically.
-- Add follow-up research questions.
-- Add user authentication.
-- Deploy to the cloud.
-- Execute agents in parallel.
-- Add citation management.
-
-## Learning Outcomes
-
-This project covers multi-agent AI systems, swarm AI concepts, agent orchestration, LangGraph workflows, LangChain, local LLMs with Ollama, prompt engineering, web and academic research automation, fact checking, state management, PDF generation, Streamlit app development, environment variable handling, and Git/GitHub usage.
-
-## Acknowledgement
-
-This project was developed as an internship project to explore multi-agent AI, swarm AI, LLM orchestration, and automated research systems.
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

@@ -1,72 +1,147 @@
-# Loan Approval Prediction Using Logistic Regression
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Loan Approval System  
+**Folder Name:** `Loan-Approval-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Loan-approval.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project predicts whether a loan application will be approved or rejected using Logistic Regression from Scikit-learn. It trains on a sample dataset containing applicant income and credit score, then predicts loan approval for user-entered values.
+## 2. Purpose
 
-## Features
+Predict whether a loan should be approved using income and credit score.
 
-- Creates a sample applicant dataset.
-- Trains a Logistic Regression model.
-- Takes income and credit score as user input.
-- Predicts loan approval or rejection.
-- Displays the result in a simple format.
+## 3. Scope
 
-## Technologies
+The system trains a binary classifier and provides a dashboard form for loan approval checks.
 
-- Python
-- Scikit-learn
-- NumPy
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-## Project Files
+## 4. Intended Users
+
+- Students
+- Banking demo users
+- Machine learning learners
+
+## 5. System Overview
+
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** Built-in demo dataset or uploaded CSV with loan approval columns.
+
+**Input Features:**
+
+- Income
+- Credit_Score
+
+**Target or Output Variable:** `Loan_Status`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** Logistic Regression
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Loan approved or rejected prediction
+- Accuracy
+- Confusion matrix
+- Classification report
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Loan-Approval-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Loan-Approval-Prediction/
-|-- loan_approval.py
-|-- README.md
-|-- requirements.txt
-`-- .gitignore
+http://localhost:8501
 ```
 
-## How to Run
+## 13. Assumptions and Constraints
 
-```bash
-git clone https://github.com/your-username/Loan-Approval-Prediction.git
-cd Loan-Approval-Prediction
-pip install -r requirements.txt
-python loan_approval.py
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Example
+## 14. Acceptance Criteria
 
-Input:
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-```text
-Enter Income: 55000
-Enter Credit Score: 770
-```
+## 15. Future Enhancements
 
-Output:
-
-```text
-Loan Approved
-```
-
-## Program Logic
-
-The program creates a small training dataset with income, credit score, and loan approval status. A Logistic Regression model learns from this data. When a new applicant's income and credit score are entered, the model compares those values with the learned pattern and predicts whether the loan should be approved or rejected.
-
-## Algorithm
-
-- Logistic Regression
-
-## Future Scope
-
-- Train on a larger real-world dataset.
-- Add features such as age, employment status, loan amount, and existing debt.
-- Display prediction accuracy.
-- Build a Tkinter GUI.
-- Deploy with Flask or Streamlit.
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

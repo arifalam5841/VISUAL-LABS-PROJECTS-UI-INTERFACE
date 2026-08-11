@@ -1,73 +1,146 @@
-# Student Pass/Fail Prediction Using Logistic Regression
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Student Pass Fail Prediction System  
+**Folder Name:** `Student-Pass-Fail-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Student-pass-fail.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project predicts whether a student will pass or fail based on marks. It uses Logistic Regression from Scikit-learn and trains on a small sample dataset containing marks and pass/fail outcomes.
+## 2. Purpose
 
-## Features
+Predict whether a student will pass or fail based on marks.
 
-- Creates a dataset of student marks and results.
-- Trains a Logistic Regression classifier.
-- Accepts marks from the user.
-- Predicts pass or fail.
-- Demonstrates binary classification in a simple way.
+## 3. Scope
 
-## Technologies
+The system trains a binary classifier and provides a dashboard form for pass/fail prediction.
 
-- Python
-- NumPy
-- Scikit-learn
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-## Project Files
+## 4. Intended Users
+
+- Students
+- Classification demo users
+- Education analytics learners
+
+## 5. System Overview
+
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** Built-in demo dataset or uploaded CSV with Marks and Result columns.
+
+**Input Features:**
+
+- Marks
+
+**Target or Output Variable:** `Result`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** Logistic Regression
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Pass or fail prediction
+- Accuracy
+- Confusion matrix
+- Classification report
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Student-Pass-Fail-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Student-Pass-Fail-Prediction/
-|-- student_pass_fail.py
-|-- README.md
-|-- requirements.txt
-`-- .gitignore
+http://localhost:8501
 ```
 
-## How to Run
+## 13. Assumptions and Constraints
 
-```bash
-git clone https://github.com/your-username/student-pass-fail-prediction.git
-cd student-pass-fail-prediction
-pip install -r requirements.txt
-python student_pass_fail.py
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-Enter marks when the program asks:
+## 14. Acceptance Criteria
 
-```text
-Enter student's marks: 65
-Student will Pass
-```
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-## Program Logic
+## 15. Future Enhancements
 
-The program trains a Logistic Regression model with marks as the input and pass/fail result as the target. When the user enters a mark, the model uses the learned relationship to predict whether the student is likely to pass or fail.
-
-## Algorithm
-
-Logistic Regression is a supervised algorithm used for binary classification.
-
-Class labels:
-
-- `0` = Fail
-- `1` = Pass
-
-## Example Output
-
-```text
-Enter student's marks: 42
-Student will Fail
-```
-
-```text
-Enter student's marks: 78
-Student will Pass
-```
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

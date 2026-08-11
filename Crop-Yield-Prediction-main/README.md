@@ -1,133 +1,153 @@
-# Crop Yield Prediction Using Random Forest
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Crop Yield Prediction System  
+**Folder Name:** `Crop-Yield-Prediction-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Crop-yield-prediction.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project predicts crop yield from agricultural data using Random Forest Regression. It uses a real-world Indian crop-yield dataset containing crop type, year, season, state, cultivated area, rainfall, fertilizer usage, pesticide usage, and yield.
+## 2. Purpose
 
-The purpose is to train a model that learns the relationship between these agricultural factors and crop yield so it can estimate yield for new conditions.
+Predict agricultural crop yield from crop, season, state, rainfall, fertilizer, pesticide, and area data.
 
-`Production` is intentionally excluded from training because yield is directly related to production and area. Including it would cause target leakage.
+## 3. Scope
 
-## Objectives
+The system trains a regression model with categorical preprocessing and provides yield predictions through the dashboard.
 
-- Analyze agricultural records.
-- Preprocess numerical and categorical data.
-- Apply One-Hot Encoding to categorical columns.
-- Train a Random Forest regression model.
-- Predict yield from user-entered farming conditions.
-- Evaluate performance with regression metrics.
-- Identify the most important yield-related features.
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-## Dataset
+## 4. Intended Users
 
-The dataset contains 19,689 records.
+- Students
+- Agriculture analytics demo users
+- Machine learning learners
 
-| Column | Description |
-| ------ | ----------- |
-| `Crop` | Crop name |
-| `Crop_Year` | Year of cultivation |
-| `Season` | Agricultural season |
-| `State` | Indian state |
-| `Area` | Cultivated area |
-| `Production` | Total production, not used for training |
-| `Annual_Rainfall` | Annual rainfall |
-| `Fertilizer` | Fertilizer used |
-| `Pesticide` | Pesticide used |
-| `Yield` | Target variable |
+## 5. System Overview
 
-Training features:
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** crop_yield.csv or uploaded CSV with required crop yield columns.
+
+**Input Features:**
+
+- Crop
+- Crop_Year
+- Season
+- State
+- Area
+- Annual_Rainfall
+- Fertilizer
+- Pesticide
+
+**Target or Output Variable:** `Yield`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** Random Forest Regressor with one-hot encoding for categorical fields
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Predicted crop yield
+- MAE, RMSE, and R2 metrics
+- Actual vs predicted chart
+- Dataset preview
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Crop-Yield-Prediction-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Crop, Crop_Year, Season, State, Area, Annual_Rainfall, Fertilizer, Pesticide
+http://localhost:8501
 ```
 
-Target:
+## 13. Assumptions and Constraints
 
-```text
-Yield
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Algorithm
+## 14. Acceptance Criteria
 
-The project uses `RandomForestRegressor` from Scikit-learn. Random Forest combines predictions from many decision trees to produce a stronger and more stable regression result.
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-```python
-RandomForestRegressor(
-    n_estimators=200,
-    random_state=42,
-    n_jobs=-1
-)
-```
+## 15. Future Enhancements
 
-## Workflow
-
-The program loads the crop-yield CSV file, displays dataset details, checks missing values, removes missing rows, separates input features and target values, one-hot encodes categorical columns, keeps numerical columns unchanged, splits the data in an 80:20 ratio, trains a 200-tree Random Forest model, evaluates predictions, visualizes actual vs predicted yield, displays feature importance, and accepts new agricultural input for yield prediction.
-
-## Evaluation
-
-- MAE: average absolute prediction error.
-- MSE: average squared error.
-- RMSE: prediction error in the target scale.
-- R2 Score: model explanation of yield variation.
-
-## Visualizations
-
-- Actual vs predicted crop yield scatter plot.
-- Feature-importance chart.
-
-## Technologies
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Scikit-learn
-
-## Project Files
-
-```text
-Crop Yield Prediction/
-|-- Crop_yield_prediction.py
-|-- crop_yield.csv
-|-- requirements.txt
-|-- README.md
-`-- .gitignore
-```
-
-## Setup and Run
-
-```bash
-git clone <your-repository-url>
-cd Crop-Yield-Prediction
-pip install -r requirements.txt
-python Crop_yield_prediction.py
-```
-
-## Sample Input
-
-```text
-Crop: Rice
-Crop Year: 2015
-Season: Kharif
-State: Maharashtra
-Area: 500
-Annual Rainfall: 1200
-Fertilizer: 150000
-Pesticide: 2500
-```
-
-The model returns an estimated crop yield based on the trained Random Forest model.
-
-## Future Scope
-
-- Tune hyperparameters with GridSearchCV or RandomizedSearchCV.
-- Add cross-validation.
-- Compare Random Forest with XGBoost and other regressors.
-- Include soil and weather-related features.
-- Create a Streamlit dashboard.
-- Save and reload the model with Joblib.
-- Add SHAP-based interpretability.
-- Deploy the project as a web app.
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

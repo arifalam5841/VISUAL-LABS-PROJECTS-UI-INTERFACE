@@ -1,100 +1,148 @@
-# Customer Segmentation Using K-Means Clustering
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Customer Segmentation System  
+**Folder Name:** `Customer-Segmentation-Kmeans-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Customer-Segmentation-kmean.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project groups customers into segments with the K-Means Clustering algorithm. It uses annual income and spending score to identify customers with similar spending patterns.
+## 2. Purpose
 
-The project also applies the Elbow Method to choose a suitable number of clusters and visualizes the customer groups along with their cluster centroids.
+Group mall customers into behavioral segments using annual income and spending score.
 
-## Objectives
+## 3. Scope
 
-- Perform customer segmentation with K-Means.
-- Find the appropriate cluster count using the Elbow Method.
-- Visualize customer groups and centroids.
-- Understand how unsupervised learning can support business analysis.
+The system performs K-Means clustering, visualizes clusters, and predicts the cluster for new customer values.
 
-## Dataset
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-Dataset file:
+## 4. Intended Users
 
-```text
-mall_customers.csv
-```
+- Students
+- Marketing analytics demo users
+- Machine learning learners
 
-Features used:
+## 5. System Overview
+
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** mall_customers.csv or uploaded CSV with customer segmentation columns.
+
+**Input Features:**
 
 - Annual Income (k$)
 - Spending Score (1-100)
 
-## Workflow
+**Target or Output Variable:** `Cluster`
 
-1. Import the required libraries.
-2. Load the customer dataset.
-3. Select the income and spending-score columns.
-4. Standardize the selected features.
-5. Use the Elbow Method to compare different K values.
-6. Train the K-Means model.
-7. Assign a cluster label to each customer.
-8. Display cluster centers.
-9. Plot customer segments.
-10. Plot clusters with centroids.
+## 9. Model and Processing Requirements
 
-## Technologies
+**Model or Processing Method:** K-Means Clustering
 
-- Python
-- Pandas
-- Matplotlib
-- Scikit-learn
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
 
-## Concepts Covered
+## 10. Output Requirements
 
-- Unsupervised learning
-- K-Means clustering
-- Feature scaling
-- Standardization
-- Elbow Method
-- Cluster centroids
-- Data visualization
+The system shall display:
 
-## Output
+- Cluster assignment
+- Cluster centers
+- Elbow chart
+- Cluster scatter plot
+- Segmented dataset
 
-- Dataset with assigned cluster labels.
-- Elbow Method graph.
-- Customer segmentation scatter plot.
-- Customer segmentation plot with centroids.
-- Cluster center values.
+## 11. External Interface Requirements
 
-## Project Files
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Customer-Segmentation-Kmeans-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Customer-Segmentation-KMeans/
-|-- mall_customers.csv
-|-- customer_segmentation.py
-|-- requirements.txt
-|-- .gitignore
-|-- README.md
-`-- images/
-    |-- elbow_method.png
-    |-- customer_clusters.png
-    `-- customer_clusters_centroids.png
+http://localhost:8501
 ```
 
-## How to Run
+## 13. Assumptions and Constraints
 
-```bash
-git clone https://github.com/yourusername/Customer-Segmentation-KMeans.git
-cd Customer-Segmentation-KMeans
-pip install -r requirements.txt
-python customer_segmentation.py
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Future Scope
+## 14. Acceptance Criteria
 
-- Use Silhouette Score to select clusters automatically.
-- Add interactive plots.
-- Include more customer attributes such as age and gender.
-- Build a Streamlit web application.
-- Export clustered customer data to CSV.
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
+
+## 15. Future Enhancements
+
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

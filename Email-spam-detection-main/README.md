@@ -1,112 +1,146 @@
-# Email Spam Detection Using Logistic Regression
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Email Spam Detection System  
+**Folder Name:** `Email-spam-detection-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `email-spam-detection.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project detects whether an email is spam or not spam using Logistic Regression. The model is trained on the SpamAssassin email dataset. Email text is cleaned and converted into numerical form with CountVectorizer so the classifier can process it.
+## 2. Purpose
 
-## Features
+Classify email text as spam or not spam using text vectorization and classification.
 
-<!-- - Loads and cleans the SpamAssassin dataset. -->
-- Removes unnecessary columns.
-- Handles missing email records.
-- Converts email text to numerical vectors with CountVectorizer.
-- Splits data into training and testing sets.
-- Trains a Logistic Regression spam classifier.
-- Evaluates the model with accuracy score, classification report, and confusion matrix.
-- Accepts a new email from the user and predicts spam or not spam.
+## 3. Scope
 
-## Technologies
+The system trains a text classifier from email body data and provides a dashboard for testing custom email text.
 
-- Python
-- Pandas
-- Scikit-learn
-- CountVectorizer
-- Logistic Regression
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-## Project Files
+## 4. Intended Users
+
+- Students
+- Text classification demo users
+- Machine learning learners
+
+## 5. System Overview
+
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
+
+## 6. Functional Requirements
+
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
+
+## 7. Non-Functional Requirements
+
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** completeSpamAssassin.csv, uploaded CSV, or dashboard demo data.
+
+**Input Features:**
+
+- Body
+
+**Target or Output Variable:** `Label`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** CountVectorizer with Logistic Regression
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Spam or not spam prediction
+- Accuracy
+- Confusion matrix
+- Classification report
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Email-spam-detection-main"
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Email-Spam-Detection/
-|-- email_spam_detection.py
-|-- completeSpamAssassin.csv
-|-- requirements.txt
-|-- .gitignore
-`-- README.md
+http://localhost:8501
 ```
 
-## Installation and Run
+## 13. Assumptions and Constraints
 
-```bash
-git clone https://github.com/your-username/Email-Spam-Detection.git
-cd Email-Spam-Detection
-pip install -r requirements.txt
-python email_spam_detection.py
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Program Flow
+## 14. Acceptance Criteria
 
-1. Load the SpamAssassin email dataset.
-2. Remove extra columns and missing values.
-3. Convert email text into vectors with CountVectorizer.
-4. Split the dataset into train and test sets.
-5. Train the Logistic Regression model.
-6. Evaluate the trained classifier.
-7. Ask the user for email content.
-8. Classify the email as spam or not spam.
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-## Evaluation
+## 15. Future Enhancements
 
-- Accuracy Score
-- Classification Report
-- Confusion Matrix
-
-## Example
-
-Input:
-
-```text
-Congratulations!
-
-You have won a free iPhone.
-
-Click here to claim your prize.
-```
-
-Output:
-
-```text
-Prediction: Spam
-```
-
-Input:
-
-```text
-Hi John,
-
-Please submit the project report before tomorrow's meeting.
-
-Regards,
-Danish
-```
-
-Output:
-
-```text
-Prediction: Not Spam
-```
-
-## Learning Outcomes
-
-- Logistic Regression for binary classification.
-- Natural Language Processing basics.
-- Text preprocessing.
-- Feature extraction with CountVectorizer.
-- Machine learning workflow.
-- Model evaluation.
-
-## License
-
-This project is intended for educational and learning purposes.
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.

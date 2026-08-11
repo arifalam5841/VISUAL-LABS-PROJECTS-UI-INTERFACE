@@ -1,95 +1,151 @@
-# Loan Approval Prediction Using Decision Tree
+# Software Requirements Specification (SRS)
 
-**Name:** Arif alam  
-**Enrollment:** 24111590742
+## 1. Project Identification
 
-## Overview
+**Project Name:** Loan Approval Decision Tree System  
+**Folder Name:** `Loan-Approval-Decision-Tree-main`  
+**Primary Language:** Python  
+**User Interface:** Streamlit dashboard  
+**Main Script:** `Loan-Approval-Decision-Tree.py`  
+**Dashboard Script:** `streamlit_app.py`
 
-This project predicts whether a loan application should be approved or rejected using a Decision Tree classification model. It analyzes applicant details such as age, monthly income, credit score, employment status, and existing loan status.
+## 2. Purpose
 
-The project also evaluates classification performance and visualizes the trained decision tree so the decision process is easier to understand.
+Predict loan approval from applicant age, income, credit score, employment status, and existing loan status.
 
-## Features
+## 3. Scope
 
-- Predicts loan approval from customer details.
-- Uses Decision Tree Classification.
-- Encodes categorical data with Label Encoding.
-- Splits data into training and testing sets.
-- Evaluates the model with accuracy score, confusion matrix, and classification report.
-- Accepts real-time user input.
-- Shows the trained Decision Tree visualization.
+The system trains a decision tree classifier and provides a dashboard for applicant approval prediction.
 
-## Technologies
+The project is intended for academic, demonstration, and learning use. It is not designed as a production-grade decision system without further validation, larger datasets, security hardening, and deployment controls.
 
-- Python
-- Pandas
-- Scikit-learn
-- Matplotlib
+## 4. Intended Users
 
-## Dataset
+- Students
+- Banking analytics demo users
+- Machine learning learners
 
-The dataset file is `data.csv`.
+## 5. System Overview
 
-| Feature | Description |
-| ------- | ----------- |
-| Age | Applicant age |
-| Monthly_Income | Applicant monthly income |
-| Credit_Score | Applicant credit score |
-| Employment_Status | Employed or Unemployed |
-| Existing_Loan | Existing loan status: Yes or No |
-| Loan_Approved | Target value: Approved or Rejected |
+The application loads data, preprocesses required fields, trains the configured machine learning or workflow model, evaluates the result where applicable, and presents output through a web dashboard. The dashboard replaces terminal-only input with browser-based controls.
 
-## Workflow
+## 6. Functional Requirements
 
-1. Load the dataset with Pandas.
-2. Convert categorical values into numeric values.
-3. Select features and target column.
-4. Split the data into train and test sets.
-5. Train the Decision Tree Classifier with the Gini criterion.
-6. Evaluate the model.
-7. Read applicant details from the user.
-8. Predict approval or rejection.
-9. Display the tree visualization.
+- The system shall provide a browser-based dashboard for the project.
+- The system shall load project data from the expected dataset file when available.
+- The system shall allow CSV upload from the dashboard where supported.
+- The system shall use demo data when a required dataset is not present and demo data is configured.
+- The system shall train or initialize the project model from the available data.
+- The system shall display important evaluation metrics or workflow results.
+- The system shall provide input controls for user prediction or analysis.
+- The system shall display the final prediction, cluster, recommendation, or generated research output.
+- The system shall show the dataset preview where applicable.
+- The system shall fail with a clear message when required columns are missing.
 
-## Installation and Run
+## 7. Non-Functional Requirements
 
-```bash
-git clone https://github.com/your-username/Loan-Approval-Decision-Tree.git
-cd Loan-Approval-Decision-Tree
-pip install -r requirements.txt
-python Loan_Approval_Decision_Tree.py
+- The dashboard should run locally on Windows using Python 3.
+- The interface should be simple enough for academic demonstration.
+- The application should avoid requiring external services unless the project specifically depends on them.
+- The system should use readable error messages for missing files, missing columns, or invalid data.
+- The system should keep the original Python script available for console-based execution.
+- The system should be maintainable with common Python libraries such as Pandas, Scikit-learn, Matplotlib, and Streamlit.
+
+## 8. Data Requirements
+
+**Required Data Source:** data.csv, uploaded CSV, or dashboard demo data.
+
+**Input Features:**
+
+- Age
+- Monthly_Income
+- Credit_Score
+- Employment_Status
+- Existing_Loan
+
+**Target or Output Variable:** `Loan_Approved`
+
+## 9. Model and Processing Requirements
+
+**Model or Processing Method:** Decision Tree Classifier with categorical encoding
+
+- The system shall prepare input features in the same logical format used by the original project.
+- The system shall handle categorical encoding where required.
+- The system shall split data into training and testing sets for supervised learning projects.
+- The system shall compute appropriate metrics for classification, regression, clustering, or workflow output.
+
+## 10. Output Requirements
+
+The system shall display:
+
+- Loan approved or rejected prediction
+- Accuracy
+- Confusion matrix
+- Classification report
+- Decision tree visualization
+
+## 11. External Interface Requirements
+
+### 11.1 User Interface
+
+- The application shall use Streamlit as the web dashboard framework.
+- The dashboard shall include sidebar controls for data upload where supported.
+- The dashboard shall include tabs or sections for prediction, metrics, charts, and dataset preview where applicable.
+
+### 11.2 Software Interface
+
+- Python packages shall be installed from `Requirements.txt`.
+- The dashboard shall be started with Streamlit from the project folder.
+
+## 12. Installation and Run Instructions
+
+Open PowerShell in this folder:
+
+```powershell
+cd "E:\visual labs project websites\Loan-Approval-Decision-Tree-main"
 ```
 
-## Sample Input
+Install dependencies:
+
+```powershell
+python -m pip install -r Requirements.txt
+```
+
+Run the dashboard:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
+Then open the local URL shown by Streamlit, usually:
 
 ```text
-Age: 28
-Monthly Income: 50000
-Credit Score: 750
-Employment Status: 1
-Existing Loan: 0
+http://localhost:8501
 ```
 
-## Sample Output
+## 13. Assumptions and Constraints
 
-```text
-Result : Loan Approved
-```
+- The system assumes the dataset columns match the required names listed in this SRS.
+- Demo datasets are small and are intended only for testing the dashboard flow.
+- Model accuracy from demo data should not be treated as real-world performance.
+- The dashboard is designed for local execution, not public deployment.
+- External API features require valid credentials where applicable.
 
-## Evaluation Metrics
+## 14. Acceptance Criteria
 
-- Accuracy Score
-- Confusion Matrix
-- Classification Report
+- The dashboard starts without syntax errors.
+- The dashboard displays the project title and data source.
+- The dashboard trains or initializes the configured model.
+- The dashboard displays prediction or analysis output.
+- The dashboard displays metrics, charts, or workflow results relevant to the project.
+- The dashboard provides a clear error message for missing required columns.
+- The README provides enough steps for a user to install dependencies and run the dashboard.
 
-## Learning Outcomes
+## 15. Future Enhancements
 
-- Decision Tree Classification
-- Gini Index
-- Data preprocessing
-- Label Encoding
-- Train-test split
-- Model training and evaluation
-- Classification metrics
-- User-input prediction
-- Decision Tree visualization
+- Add larger real-world datasets.
+- Add model persistence and versioning.
+- Add advanced validation for user input.
+- Add deployment support for cloud hosting.
+- Add improved visual design and project-specific reports.
+- Add automated tests for preprocessing, model training, and dashboard loading.
