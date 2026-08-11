@@ -1,0 +1,9 @@
+langgraph
+langchain
+langchain-ollama
+streamlit
+duckduckgo-search
+ddgs
+arxiv
+reportlab
+python-dotenv
